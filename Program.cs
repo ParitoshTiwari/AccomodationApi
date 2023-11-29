@@ -2,6 +2,7 @@ using AccomodationApi.Data;
 using AccomodationApi.Service.Interfaces;
 using AccomodationApi.Service.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +13,12 @@ builder.Services.AddScoped<IGetPropertyName, GetPropertyNameService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+var userSecret = builder.Configuration.GetSection("ConnectionStrings");
 if (builder.Environment.IsDevelopment())
 {
-    builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.Development.json");
-    connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+    ////builder.Configuration.AddEnvironmentVariables().AddJsonFile("appsettings.Development.json");
+    connection = userSecret.GetChildren().FirstOrDefault()?.Value;
+    ///connection = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
 }
 else
 {
