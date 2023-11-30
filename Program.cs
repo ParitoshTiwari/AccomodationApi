@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var MyOrigins = "myOrigins";
 // Add services to the container.
 var connection = string.Empty;
 builder.Services.AddControllers();
@@ -13,6 +13,12 @@ builder.Services.AddScoped<IGetPropertyName, GetPropertyNameService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options => options.AddPolicy(name: MyOrigins, policy =>
+{
+    policy.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+}));
 var userSecret = builder.Configuration.GetSection("ConnectionStrings");
 if (builder.Environment.IsDevelopment())
 {
@@ -39,6 +45,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyOrigins);
 
 app.UseAuthorization();
 

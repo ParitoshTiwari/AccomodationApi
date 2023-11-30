@@ -19,8 +19,6 @@ namespace AccomodationApi.Controllers
         [HttpGet("GetAllProperties")]
         public async Task<IEnumerable<Property>> GetPropertyInfo()
         {
-            string say = "something : has value";
-            string[] arr = say.Split(":");
             return await _getPropertyName.GetPropertiesAsync();
         }
 
