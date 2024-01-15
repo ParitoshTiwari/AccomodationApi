@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Properties/ServiceDependencies/AccomodationApi - Web Deploy/apis1.arm.json
+/Properties/ServiceDependencies/AccomodationApi - Web Deploy/profile.arm.json
