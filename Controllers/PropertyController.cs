@@ -39,5 +39,11 @@ namespace AccomodationApi.Controllers
         {
             return await _getPropertyName.GetAvailableInfoAsync();
         }
+
+        [HttpGet("ShowAllPropertiesDataInfo")]
+        public async Task<IEnumerable<AvailableProperty>> ShowAllPropertiesDataInfo()
+        {
+            return await _getPropertyName.GetAvailableInfoAsync();
+        }
     }
 }
