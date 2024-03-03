@@ -43,6 +43,7 @@ namespace AccomodationApi.Controllers
         [HttpGet("ShowAllPropertiesDataInfo")]
         public async Task<IEnumerable<AvailableProperty>> ShowAllPropertiesDataInfo()
         {
+            Console.WriteLine("Test");
             return await _getPropertyName.GetAvailableInfoAsync();
         }
     }
